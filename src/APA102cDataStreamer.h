@@ -9,7 +9,7 @@ public:
     : colorDataBuffer()
     , bitTransformBuffer()
     {
-        initRate(1000000).initGlobalBrightness(31); //default
+        setRate(1000000).setGlobalBrightness(31); //default
     }
 
     APA102cDataStreamer<NUM_USE_CH>& initPin(const uint8_t dataPin, const uint8_t clockPin){
@@ -20,12 +20,12 @@ public:
         return *this;
     }
 
-    APA102cDataStreamer<NUM_USE_CH>& initRate(const uint32_t Hz){
+    APA102cDataStreamer<NUM_USE_CH>& setRate(const uint32_t Hz){
         waitClockTimeH = teensy32_Rate_Hz / Hz;
         return *this;
     }
 
-    APA102cDataStreamer<NUM_USE_CH>& initGlobalBrightness(uint8_t brightness = 31){
+    APA102cDataStreamer<NUM_USE_CH>& setGlobalBrightness(uint8_t brightness = 31){
         if(brightness > 31) brightness = 31;
         for(findex = 0 ; findex < NUM_USE_CH ; ++findex){
             colorDataBuffer.rawData[findex].global = brightness;
