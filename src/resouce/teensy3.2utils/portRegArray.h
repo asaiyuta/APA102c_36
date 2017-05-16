@@ -1,0 +1,125 @@
+#ifndef PORT_REG_ARRAY
+#define PORT_REG_ARRAY
+#include <array>
+
+class PortRegArray{
+public:
+    PortRegArray()
+    :mapPinToReg{
+        (uint8_t*) 0x43fe0840,
+        (uint8_t*) 0x43fe0844,
+        (uint8_t*) 0x43fe1800,
+        (uint8_t*) 0x43fe0030,
+        (uint8_t*) 0x43fe0034,
+        (uint8_t*) 0x43fe181c,
+        (uint8_t*) 0x43fe1810,
+        (uint8_t*) 0x43fe1808,
+        (uint8_t*) 0x43fe180c,
+        (uint8_t*) 0x43fe100c,
+        (uint8_t*) 0x43fe1010,
+        (uint8_t*) 0x43fe1018,
+        (uint8_t*) 0x43fe101c,
+        (uint8_t*) 0x43fe1014,
+        (uint8_t*) 0x43fe1804,
+        (uint8_t*) 0x43fe1000,
+        (uint8_t*) 0x43fe0800,
+        (uint8_t*) 0x43fe0804,
+        (uint8_t*) 0x43fe080c,
+        (uint8_t*) 0x43fe0808,
+        (uint8_t*) 0x43fe1814,
+        (uint8_t*) 0x43fe1818,
+        (uint8_t*) 0x43fe1004,
+        (uint8_t*) 0x43fe1008,
+        (uint8_t*) 0x43fe0014,
+        (uint8_t*) 0x43fe084c,
+        (uint8_t*) 0x43fe2004,
+        (uint8_t*) 0x43fe1024,
+        (uint8_t*) 0x43fe1020,
+        (uint8_t*) 0x43fe1028,
+        (uint8_t*) 0x43fe102c,
+        (uint8_t*) 0x43fe2000,
+        (uint8_t*) 0x43fe0848,
+        (uint8_t*) 0x43fe0010
+    }
+    ,gpioBitBand{
+        (uint32_t*)0x43fe0ac0,
+        (uint32_t*)0x43fe0ac4,
+        (uint32_t*)0x43fe1a80,
+        (uint32_t*)0x43fe02b0,
+        (uint32_t*)0x43fe02b4,
+        (uint32_t*)0x43fe1a9c,
+        (uint32_t*)0x43fe1a90,
+        (uint32_t*)0x43fe1a88,
+        (uint32_t*)0x43fe1a8c,
+        (uint32_t*)0x43fe128c,
+        (uint32_t*)0x43fe1290,
+        (uint32_t*)0x43fe1298,
+        (uint32_t*)0x43fe129c,
+        (uint32_t*)0x43fe1294,
+        (uint32_t*)0x43fe1a84,
+        (uint32_t*)0x43fe1280,
+        (uint32_t*)0x43fe0a80,
+        (uint32_t*)0x43fe0a84,
+        (uint32_t*)0x43fe0a8c,
+        (uint32_t*)0x43fe0a88,
+        (uint32_t*)0x43fe1a94,
+        (uint32_t*)0x43fe1a98,
+        (uint32_t*)0x43fe1284,
+        (uint32_t*)0x43fe1288,
+        (uint32_t*)0x43fe0294,
+        (uint32_t*)0x43fe0acc,
+        (uint32_t*)0x43fe2284,
+        (uint32_t*)0x43fe12a4,
+        (uint32_t*)0x43fe12a0,
+        (uint32_t*)0x43fe12a8,
+        (uint32_t*)0x43fe12ac,
+        (uint32_t*)0x43fe2280,
+        (uint32_t*)0x43fe0ac8,
+        (uint32_t*)0x43fe0290,
+    }
+    ,pinConfig{
+        (uint32_t*)0x4004a040,
+        (uint32_t*)0x4004a044,
+        (uint32_t*)0x4004c000,
+        (uint32_t*)0x40049030,
+        (uint32_t*)0x40049034,
+        (uint32_t*)0x4004c01c,
+        (uint32_t*)0x4004c010,
+        (uint32_t*)0x4004c008,
+        (uint32_t*)0x4004c00c,
+        (uint32_t*)0x4004b00c,
+        (uint32_t*)0x4004b010,
+        (uint32_t*)0x4004b018,
+        (uint32_t*)0x4004b01c,
+        (uint32_t*)0x4004b014,
+        (uint32_t*)0x4004c004,
+        (uint32_t*)0x4004b000,
+        (uint32_t*)0x4004a000,
+        (uint32_t*)0x4004a004,
+        (uint32_t*)0x4004a00c,
+        (uint32_t*)0x4004a008,
+        (uint32_t*)0x4004c014,
+        (uint32_t*)0x4004c018,
+        (uint32_t*)0x4004b004,
+        (uint32_t*)0x4004b008,
+        (uint32_t*)0x40049014,
+        (uint32_t*)0x4004a04c,
+        (uint32_t*)0x4004d004,
+        (uint32_t*)0x4004b024,
+        (uint32_t*)0x4004b020,
+        (uint32_t*)0x4004b028,
+        (uint32_t*)0x4004b02c,
+        (uint32_t*)0x4004d000,
+        (uint32_t*)0x4004a048,
+        (uint32_t*)0x40049010,
+    }
+    ,pullUp(0x103)
+{}
+
+    ~PortRegArray(){}
+    std::array<uint8_t*, 34> mapPinToReg;
+    std::array<uint32_t*,34> gpioBitBand;
+    std::array<uint32_t*,34> pinConfig;
+    uint32_t pullUp;
+};
+#endif
