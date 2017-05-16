@@ -7,7 +7,7 @@ class APA102cDataStreamer{
 public:
     APA102cDataStreamer()
     : colorDataBuffer()
-    , bitTransformBuffer()
+    , transformedBytes()
     {
         setRate(1000000).setGlobalBrightness(31); //default
     }
@@ -21,7 +21,7 @@ public:
     }
 
     APA102cDataStreamer<NUM_USE_CH>& setRate(const uint32_t Hz){
-        waitClockTimeH = teensy32_Rate_Hz / Hz;
+        waitClockTimeH = teensy32_Rate_Hz / Hz / 15;
         return *this;
     }
 
@@ -78,7 +78,7 @@ private:
 
     template<std::size_t bitNum>
     inline void writeBitSifter(const uint8_t byte){
-        bitTransformBuffer = byte << (32 - bitNum);
+        transformedBytes = byte << (32 - bitNum);
         for(bitWriteCounter = 0 ; bitWriteCounter < bitNum ; ++bitWriteCounter){
             clockLow();
             asm volatile(
@@ -92,7 +92,7 @@ private:
 
                 "L_%=_END:"
                 :[dataOut] "=g" (*dataPinPort)
-                ,[byte] "+r" (bitTransformBuffer)
+                ,[byte] "+r" (transformedBytes)
                 : :"memory"
             );
             clockHigh();
@@ -124,7 +124,7 @@ private:
       );
     }
 
-    uint32_t bitTransformBuffer;
+    uint32_t transformedBytes;
     std::size_t findex;
     uint8_t bitWriteCounter;
     uint8_t* dataPinPort;
