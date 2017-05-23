@@ -33,6 +33,14 @@ struct APA102cColorDataBuffer{
             RGB_array[i * 3 + 2] = &(rawData[i].blue);
         }
     }
+    
+    void init(){
+        for(std::size_t i = 0 ; i < SIZE ; ++i){
+            RGB_array[i * 3 + 0] = &(rawData[i].red);
+            RGB_array[i * 3 + 1] = &(rawData[i].green);
+            RGB_array[i * 3 + 2] = &(rawData[i].blue);
+        }
+    }
 
     uint8_t& operator[](const std::size_t index){
         return *(RGB_array[index]);

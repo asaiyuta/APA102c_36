@@ -1,6 +1,6 @@
 #ifndef FAKE_PINTOPORT
 #define FAKE_PINTOPORT
-#include "teensy3.2utils/portRegArray.h"
+#include "teensy3.6utils/portRegArray.h"
 
 uint8_t* fakePinToPort(const uint8_t PinNumber){
     PortRegArray* RegArray = new PortRegArray();

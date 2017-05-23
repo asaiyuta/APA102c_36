@@ -11,7 +11,9 @@ public:
     {
         setRate(1000000).setGlobalBrightness(31); //default
     }
-
+    
+  
+    
     APA102cDataStreamer<NUM_USE_CH>& initPin(const uint8_t dataPin, const uint8_t clockPin){
         dataPinPort = fakePinToPort(dataPin);
         changeModeDigitalWrite(dataPin);
@@ -21,7 +23,7 @@ public:
     }
 
     APA102cDataStreamer<NUM_USE_CH>& setRate(const uint32_t Hz){
-        waitClockTimeH = teensy32_Rate_Hz / Hz / 15;
+        waitClockTimeH = teensy36_Rate_Hz / (Hz / 8) / 15;
         return *this;
     }
 
@@ -133,6 +135,6 @@ private:
     uint32_t waitClockNum;
     uint32_t waitClockTimeH;
 
-    const uint32_t teensy32_Rate_Hz = 720000000;
+    const uint32_t teensy36_Rate_Hz = 1800000000;
 };
  #endif /* end of include guard: APA102cDcataStreamer_H */
